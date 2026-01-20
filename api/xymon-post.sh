@@ -29,7 +29,8 @@ done)
 # Send to probe server
 curl -s -X POST "$SERVER" \
      -H "Content-Type: text/plain" \
-     --data-binary "$PAYLOAD"
+     --data-binary "$PAYLOAD" \
+     -v
 
 # Exit code of the extension (optional: propagate)
 exit 0

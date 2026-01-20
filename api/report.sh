@@ -23,7 +23,7 @@ mkdir -p "$dir"
 {
   echo "state=$state"
   echo "timestamp=$(date +%s)"
-  echo "summary=$summary"
+  echo "summary=\"$summary\""
 } > "$tmp"
 
 mv "$tmp" "$file"

@@ -88,7 +88,9 @@ for nodepath in "$NODES"/*; do
     result=$(load_state "$statusfile")
 
     state=${result%%|*}
+    #echo "state '$state'";
     summary=${result#*|}
+    #echo "summary '$summary'";
 
     class=$(color_class "$state")
 

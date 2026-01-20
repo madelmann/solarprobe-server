@@ -38,7 +38,7 @@ echo "$BODY" | while read -r line; do
   {
     echo "state=$state"
     echo "timestamp=$now"
-    echo "summary=$summary"
+    echo "summary=\"$summary\""
   } > "$tmp"
 
   # atomic rename
