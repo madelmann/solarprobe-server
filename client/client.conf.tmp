@@ -1,1 +1,2 @@
-SERVER="http://your.solarprobe.server/"
+SERVER="${SERVER}"
+
