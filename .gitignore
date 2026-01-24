@@ -1,4 +1,4 @@
-client/config.conf
+client/client.conf
 client/probes.conf
 config/base.conf
 config/probes.conf

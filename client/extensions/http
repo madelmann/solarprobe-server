@@ -21,12 +21,13 @@ while read -r url; do
         MSG_SHORT="$RESULT"
     fi
 done <<EOF
-$(cat "${SCRIPT_DIRECTORY}/http.conf")
+$(cat "${SCRIPT_DIRECTORY}/http.hosts")
 EOF
 
 # Probe - Result
 
-#printf '%s %s' "$PROBE $COLOR $(date)" "$MSG_SHORT\n$MSG_LONG"
-printf '%s %s' "$PROBE $COLOR $(date)" "$MSG_SHORT"
+#printf '%s %s\n' "$PROBE $COLOR $(date)" "$MSG_SHORT\n$MSG_LONG"
+printf '%s %s\n' "$PROBE $COLOR $(date)" "$MSG_SHORT"
 
 exit 0
+
