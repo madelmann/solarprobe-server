@@ -1,9 +1,8 @@
-#!/bin/sh
-#set -eu
+#!/bin/bash
 
-. "config/base.conf"
+source "config/base.conf"
 
-TMPDIR="/tmp"
+TMPDIR="${TMP}"
 
 # read entire request body
 BODY="$(cat)"

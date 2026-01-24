@@ -5,7 +5,7 @@ source "${SCRIPT_DIRECTORY}/ping.conf"
 
 # Probe - Configuration
 
-PROBE=template     # Name of the probe
+PROBE=ping     # Name of the probe
 COLOR=green    # By default, everything is OK
 MSG_LONG=""
 MSG_SHORT=""
@@ -17,7 +17,7 @@ while read -r HOST; do
 
     if [ "$RESULT" -eq 1 ]; then
         COLOR=red
-        MSG_SHORT="$HOST is unreachable"
+        MSG_SHORT="${MSG_SHORT} $HOST is unreachable"
     fi
 done <<EOF
 $(cat "${SCRIPT_DIRECTORY}/ping.hosts")
@@ -25,6 +25,7 @@ EOF
 
 # Probe - Result
 
-printf '%s\n\n%s\n\n%s\n' "$PROBE $COLOR $(date)" "$MSG_SHORT" "$MSG_LONG"
+#printf '%s %s' "$PROBE $COLOR $(date)" "$MSG_SHORT\n$MSG_LONG"
+printf '%s %s' "$PROBE $COLOR $(date)" "$MSG_SHORT"
 
 exit 0
