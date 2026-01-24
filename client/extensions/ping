@@ -1,27 +1,26 @@
 #!/bin/bash
 
 SCRIPT_DIRECTORY=$(dirname "$0")
-#source "${SCRIPT_DIRECTORY}/extensions/http.conf"
+source "${SCRIPT_DIRECTORY}/ping.conf"
 
 # Probe - Configuration
 
-PROBE=http     # Name of the probe
+PROBE=template     # Name of the probe
 COLOR=green    # By default, everything is OK
 MSG_LONG=""
 MSG_SHORT=""
 
 # Probe - Implementation
 
-# Use input redirection instead of a pipe
-while read -r url; do
-    RESULT=$(curl -s -I "$url" | grep HTTP)
+while read -r HOST; do
+    RESULT=$(ping -c ${COUNT} -t ${TTL} "${HOST}" > /dev/null; echo $?)
 
-    if [ "$RESULT" != "200" ]; then
+    if [ "$RESULT" -eq 1 ]; then
         COLOR=red
-        MSG_SHORT="$RESULT"
+        MSG_SHORT="$HOST is unreachable"
     fi
 done <<EOF
-$(cat "${SCRIPT_DIRECTORY}/http.conf")
+$(cat "${SCRIPT_DIRECTORY}/ping.hosts")
 EOF
 
 # Probe - Result

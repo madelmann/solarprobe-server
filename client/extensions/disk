@@ -1,15 +1,19 @@
-#!/bin/sh
+#!/bin/bash
 
-COLUMN=disk 	# Name of the column
-COLOR=green		# By default, everything is OK
+SCRIPT_DIRECTORY=$(dirname "$0")
+source "${SCRIPT_DIRECTORY}/extensions/disk.conf"
 
-WARNING=40
-CRITICAL=90
-IGNORE_FS='^(tmpfs|devtmpfs|overlay|squashfs)$'
+# Probe - Configuration
 
+PROBE=disk     # Name of the probe
+COLOR=green    # By default, everything is OK
+MSG_LONG=""
+MSG_SHORT=""
+
+# Probe - Implementation
+
+MSG_LONG=$(df -P -T | tail -n +2)
 STATUS=0
-
-DISKUSAGE=$(df -P -T | tail -n +2)
 
 # Use input redirection instead of a pipe
 while read -r FS TYPE SIZE USED AVAIL USEP MOUNT; do
@@ -25,39 +29,26 @@ while read -r FS TYPE SIZE USED AVAIL USEP MOUNT; do
         STATUS=1
     fi
 done <<EOF
-echo -e "$DISKUSAGE"
+echo -e "$MSG_LONG"
 EOF
-
-# case "$STATUS" in
-#     0)
-#         echo "OK: All partitions are below ${WARNING}% usage"
-#         ;;
-#     1)
-#         echo "WARNING: One or more partitions exceed ${WARNING}% usage"
-#         ;;
-#     2)
-#         echo "CRITICAL: One or more partitions exceed ${CRITICAL}% usage"
-#         ;;
-# esac
-#
-# exit "$STATUS"
 
 case "$STATUS" in
     0)
         COLOR=green
-        MSG="OK: All partitions are below ${WARNING}% usage"
+        MSG_SHORT="OK: All partitions are below ${WARNING}% usage"
         ;;
     1)
         COLOR=yellow
-        MSG="WARNING: One or more partitions exceed ${WARNING}% usage"
+        MSG_SHORT="WARNING: One or more partitions exceed ${WARNING}% usage"
         ;;
     2)
         COLOR=red
-        MSG="CRITICAL: One or more partitions exceed ${CRITICAL}% usage"
+        MSG_SHORT="CRITICAL: One or more partitions exceed ${CRITICAL}% usage"
         ;;
 esac
 
-# echo "$COLUMN $COLOR $(date) $MSG"
-printf '%s\n\n%s\n\n%s\n' "$COLUMN $COLOR $(date)" "$MSG" "$DISKUSAGE"
+# Probe - Result
+
+printf '%s\n\n%s\n\n%s\n' "$PROBE $COLOR $(date)" "$MSG_SHORT" "$MSG_LONG"
 
 exit 0

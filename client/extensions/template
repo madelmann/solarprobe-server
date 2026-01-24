@@ -1,0 +1,22 @@
+#!/bin/bash
+
+SCRIPT_DIRECTORY=$(dirname "$0")
+
+source "${SCRIPT_DIRECTORY}/extensions/template.conf"
+
+# Probe - Configuration
+
+PROBE=template     # Name of the probe
+COLOR=green    # By default, everything is OK
+MSG_LONG=""
+MSG_SHORT=""
+
+# Probe - Implementation
+
+# TODO: implement your checks here
+
+# Probe - Result
+
+printf '%s\n\n%s\n\n%s\n' "$PROBE $COLOR $(date)" "$MSG_SHORT" "$MSG_LONG"
+
+exit 0
