@@ -17,7 +17,7 @@ MSG_SHORT=""
 
 # Probe - Result
 
-#printf '%s %s' "$PROBE $COLOR $(date)" "$MSG_SHORT\n$MSG_LONG"
-printf '%s %s' "$PROBE $COLOR $(date)" "$MSG_SHORT"
+#printf '%s %s\n' "$PROBE $COLOR $(date)" "$MSG_SHORT\n$MSG_LONG"
+printf '%s %s\n' "$PROBE $COLOR $(date)" "$MSG_SHORT"
 
 exit 0
