@@ -1,1 +1,1 @@
-*/5 * * * *     /var/lib/slang/library/solarprobe/slang-client/client.sh
+*/5 * * * *     /bin/bash -l -c '/var/lib/slang/library/SolarProbe-Client/client.sh'

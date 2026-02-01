@@ -2,8 +2,8 @@
 
 BASE="${BASE}"
 NODES="${BASE}/nodes"
-OUT="www/index.html"
+OUT="$BASE/www/index.html"
 PROBES_CONF="$BASE/config/probes.conf"
 TMP="$BASE/tmp"
-WWW="www/nodes"
+WWW="$BASE/www/nodes"
 

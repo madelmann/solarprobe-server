@@ -1,7 +1,8 @@
-#!/bin/sh
-#set -eu
+#!/bin/bash
 
-. "config/base.conf"
+BASE_DIRECTORY=$(dirname "$0")
+
+source "${BASE_DIRECTORY}/config/base.conf"
 
 TTL=300
 now=$(date +%s)
@@ -9,10 +10,10 @@ now=$(date +%s)
 [ $# -eq 1 ] || { echo "Usage: $0 <node>"; exit 1; }
 NODE="$1"
 
-NODE_DIR="$BASE/$NODE"
-OUT="$WWW/$NODE.html"
+NODE_DIR="${BASE_DIRECTORY}/$NODE"
+OUT="${WWW}/$NODE.html"
 
-mkdir -p "$WWW"
+mkdir -p "${WWW}"
 
 cat > "$OUT" <<EOF
 <!DOCTYPE html>

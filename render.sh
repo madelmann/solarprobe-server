@@ -80,7 +80,7 @@ echo "</tr>" >> "$OUT"
 for nodepath in "$NODES"/*; do
   [ -d "$nodepath" ] || continue
   node=$(basename "$nodepath")
-  ./render-node.sh "$node"
+  ${BASE_DIRECTORY}/render-node.sh "$node"
 
   echo "<tr><td class=\"node\"><a href=\"nodes/$node.html\">$node</a></td>" >> "$OUT"
 
