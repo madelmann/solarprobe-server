@@ -1,8 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 # Wrapper to send Xymon extension output to probe server
 # Usage: xymon-post.sh <hostname> <probe-server-url> [extension ... args]
-
-#set -eu
 
 if [ $# -lt 2 ]; then
   echo "Usage: $0 <hostname> <server-url> [extension ...]" >&2

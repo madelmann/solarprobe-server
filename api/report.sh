@@ -1,7 +1,6 @@
-#!/bin/sh
-#set -eu
+#!/bin/bash
 
-. "config/base.conf"
+source "config/base.conf"
 
 # Read JSON body (very naive, prototype only)
 body="$(cat)"
