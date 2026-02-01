@@ -1,5 +1,8 @@
+.*
 config/base.conf
 config/probes.conf
 nodes/*
 www/*
+
+!.gitignore
 
